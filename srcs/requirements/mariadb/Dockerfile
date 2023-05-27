@@ -9,9 +9,15 @@ RUN mkdir /scripts
 
 # Copiar el script SQL a la imagen
 COPY tools/test.sql /scripts
+COPY ./tools/my.cnf /etc/mysql
 
+# Inicializar la base de datos
+RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql
 # Exponer el puerto para MariaDB
 EXPOSE 3306
 
 # Ejecutar MariaDB
-CMD ["mysqld", "--user=mysql", "--datadir=/var/lib/mysql", "--init_file=/scripts/test.sql"]
+CMD ["sh", "-c", "while true; do sleep 1000; done"]
+
+#CMD ["mysqld", "--user=mysql", "--datadir=/var/lib/mysql", "--init_file=/scripts/test.sql"]
+# "--user=mysql", "--datadir=/var/lib/mysql", "--init_file=/scripts/test.sql"]
