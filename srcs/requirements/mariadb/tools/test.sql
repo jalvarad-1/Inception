@@ -8,3 +8,5 @@ CREATE USER IF NOT EXISTS myuser@'%' IDENTIFIED BY 'thisismyuserpassword';
 SET PASSWORD FOR myuser@'%' = PASSWORD('thisismyuserpassword');
 CREATE DATABASE IF NOT EXISTS databasename;
 GRANT ALL ON databasename.* TO myuser@'%';
+GRANT ALL ON databasename.* TO root@'%';
+FLUSH PRIVILEGES;

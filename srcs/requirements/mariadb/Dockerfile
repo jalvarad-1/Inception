@@ -17,7 +17,5 @@ RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql
 EXPOSE 3306
 
 # Ejecutar MariaDB
-CMD ["sh", "-c", "while true; do sleep 1000; done"]
-
-#CMD ["mysqld", "--user=mysql", "--datadir=/var/lib/mysql", "--init_file=/scripts/test.sql"]
-# "--user=mysql", "--datadir=/var/lib/mysql", "--init_file=/scripts/test.sql"]
+#CMD ["sh", "-c", "while true; do sleep 1000; done"]
+CMD ["mysqld_safe", "--user=mysql", "--datadir=/var/lib/mysql", "--init-file=/scripts/test.sql"]
