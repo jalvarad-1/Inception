@@ -31,7 +31,7 @@ services:
       - wordpress:/var/www/html
     networks:
       - inception
-    restart: alway
+    restart: always
   mariadb:
     container_name: mariadb
     build: ./requirements/mariadb

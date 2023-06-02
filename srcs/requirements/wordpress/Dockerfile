@@ -13,7 +13,7 @@ RUN echo 'https://dl-cdn.alpinelinux.org/alpine/v3.16/community' >> /etc/apk/rep
 RUN echo 'https://dl-cdn.alpinelinux.org/alpine/v3.16/main' >> /etc/apk/repositories
 
 # Install packages
-RUN apk update && apk add php8 php8-fpm php8-phar php8-curl mariadb-client
+RUN apk update && apk add php8 php8-fpm php8-phar php8-curl mariadb-client php8-mysqli php8-iconv
 
 # Download and extract WordPress
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
