@@ -2,7 +2,7 @@
 FROM alpine:3.17
 
 # Actualizar el sistema e instalar MariaDB
-RUN apk update && apk add mariadb && apk add mysql-client
+RUN apk update && apk add mariadb
 
 # Crear un directorio para los scripts SQL 
 RUN mkdir /scripts
@@ -16,5 +16,4 @@ RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql
 # Exponer el puerto para MariaDB
 EXPOSE 3306
 # Ejecutar MariaDB
-#CMD ["sh", "-c", "while true; do sleep 1000; done"]
 CMD ["mysqld_safe", "--user=mysql", "--datadir=/var/lib/mysql", "--init-file=/scripts/test.sql"]
