@@ -1,10 +1,6 @@
 # Set base image
 FROM alpine:3.17
-# Set environment variables
-ENV DB_NAME=databasename
-ENV DB_USER=myuser
-ENV DB_PASSWORD=thisismyuserpassword
-ENV DB_HOST=my_mariadb_container
+
 # Set working directory
 WORKDIR /var/www/html
 

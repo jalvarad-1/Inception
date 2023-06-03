@@ -2,12 +2,18 @@ version: "3.5"
 volumes:
   mariadb:
     name: mariadb
+#    driver: local
+#    driver_opts:
+#      type: none
+#      o: bind
+#      device: /home/$LOGIN/data/mariadb
   wordpress:
     name: wordpress
-
-networks:
-  inception:
-    name: inception
+#    driver: local
+#    driver_opts:
+#      type: none
+#      o: bind
+#      device: /home/$LOGIN/data/wordpress
 
 services:
   nginx:
@@ -21,6 +27,8 @@ services:
       - wordpress:/var/www/html
     networks:
       - inception
+    environment:
+      - 
     restart: always
   wordpress:
     container_name: wordpress

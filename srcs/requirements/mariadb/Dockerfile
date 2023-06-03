@@ -1,19 +1,22 @@
 # Set base image
 FROM alpine:3.17
 
-# Actualizar el sistema e instalar MariaDB
+# Update apk and install mariadb package
 RUN apk update && apk add mariadb
 
-# Crear un directorio para los scripts SQL 
+# Create directory for SQL Scripts
 RUN mkdir /scripts
 
-# Copiar el script SQL a la imagen
-COPY tools/test.sql /scripts
-COPY ./tools/my.cnf /etc/my.cnf.d/mariadb-server.cnf
+# Copy database setup script and maraiadb config
+COPY tools/databse_setup.sh /scripts
+COPY ./conf/my.cnf /etc/my.cnf.d/mariadb-server.cnf
 
-# Inicializar la base de datos
+# Init database
+# https://mariadb.com/kb/en/mariadb-install-db/
 RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql
-# Exponer el puerto para MariaDB
+
+# Expose port for MariaDB
 EXPOSE 3306
-# Ejecutar MariaDB
-CMD ["mysqld_safe", "--user=mysql", "--datadir=/var/lib/mysql", "--init-file=/scripts/test.sql"]
+
+# Execute script that creates init.sql and execute mariadb
+CMD ["/bin/sh", "/scripts/database_setup.sh"]

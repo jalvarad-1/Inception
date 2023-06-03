@@ -1,18 +1,19 @@
 #!/bin/sh
 
-# Crear el script SQL
+# Create SQL script
 cat << EOF > /scripts/init.sql
-CREATE USER IF NOT EXISTS 'root'@'localhost' IDENTIFIED BY '${MARIADB_ROOT_USER}';
+CREATE USER IF NOT EXISTS 'root'@'localhost' IDENTIFIED BY '${MARIADB_ROOT_PASSWORD}';
 SET PASSWORD FOR 'root'@'localhost' = PASSWORD('${MARIADB_ROOT_PASSWORD}');
 GRANT ALL ON *.* TO 'root'@'localhost' WITH GRANT OPTION;
-CREATE USER IF NOT EXISTS 'root'@'%' IDENTIFIED BY '${MARIADB_ROOT_USER}';
+CREATE USER IF NOT EXISTS 'root'@'%' IDENTIFIED BY '${MARIADB_ROOT_PASSWORD}';
 SET PASSWORD FOR 'root'@'%' = PASSWORD('${MARIADB_ROOT_PASSWORD}');
 GRANT ALL ON *.* TO 'root'@'%' WITH GRANT OPTION;
-CREATE USER IF NOT EXISTS '${MARIADB_USER}'@'%' IDENTIFIED BY '${MARIADB_USER}';
+CREATE USER IF NOT EXISTS '${MARIADB_USER}'@'%' IDENTIFIED BY '${MARIADB_USER_PASSWORD}';
 SET PASSWORD FOR '${MARIADB_USER}'@'%' = PASSWORD('${MARIADB_USER_PASSWORD}');
 CREATE DATABASE IF NOT EXISTS ${DATABASE_NAME};
 GRANT ALL ON ${DATABASE_NAME}.* TO '${{MARIADB_USER}'@'%';
 EOF
 
-# Ejecutar MariaDB
-exec mysqld --user=mysql --datadir="/var/lib/mysql" --init-file="/scripts/init.sql"
+# Execute MariaDB
+# https://mariadb.com/kb/en/mysqld_safe/
+mysqld_safe --user=mysql --datadir="/var/lib/mysql" --init-file="/scripts/init.sql"

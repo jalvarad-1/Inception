@@ -48,7 +48,6 @@ DNS.1 = ${DOMAIN}
 EOF
 
 # create CSR request using private key
-
 openssl req -new -key ${DOMAIN}.key -out ${DOMAIN}.csr -config csr.conf
 
 # Create a external config file for the certificate
@@ -66,7 +65,6 @@ DNS.1 = ${DOMAIN}
 EOF
 
 # Create SSl with self signed CA
-
 openssl x509 -req \
     -in ${DOMAIN}.csr \
     -CA rootCA.crt -CAkey rootCA.key \
