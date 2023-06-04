@@ -8,7 +8,7 @@ RUN apk update && apk add mariadb
 RUN mkdir /scripts
 
 # Copy database setup script and maraiadb config
-COPY tools/databse_setup.sh /scripts
+COPY tools/database_setup.sh /scripts
 COPY ./conf/my.cnf /etc/my.cnf.d/mariadb-server.cnf
 
 # Init database

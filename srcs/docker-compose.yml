@@ -6,14 +6,18 @@ volumes:
 #    driver_opts:
 #      type: none
 #      o: bind
-#      device: /home/$LOGIN/data/mariadb
+#      device: $HOME/data/mariadb
   wordpress:
     name: wordpress
 #    driver: local
 #    driver_opts:
 #      type: none
 #      o: bind
-#      device: /home/$LOGIN/data/wordpress
+#      device: $HOME/data/wordpress
+
+networks:
+  inception:
+    name: inception
 
 services:
   nginx:
@@ -27,8 +31,6 @@ services:
       - wordpress:/var/www/html
     networks:
       - inception
-    environment:
-      - 
     restart: always
   wordpress:
     container_name: wordpress
@@ -39,6 +41,16 @@ services:
       - wordpress:/var/www/html
     networks:
       - inception
+    environment:
+      - DATABASENAME=${DATABASENAME}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - DB_HOST=mariadb
+      - DOMAIN_NAME=${DOMAIN_NAME}
+      - PROJECT=${PROJECT}
+      - WP_ADMIN_USER=${WP_ADMIN_USER}
+      - WP_ADMIN_PASS=${WP_ADMIN_PASS}
+      - LOGIN=${LOGIN}
     restart: always
   mariadb:
     container_name: mariadb
@@ -47,6 +59,11 @@ services:
       - mariadb:/var/lib/mysql
     networks:
       - inception
+    environment:
+      - MARIADB_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MARIADB_USER=${MYSQL_USER}
+      - MARIADB_USER_PASSWORD=${MYSQL_PASSWORD}
+      - DATABASE_NAME=${DATABASENAME}
     restart: always
-      
+
   

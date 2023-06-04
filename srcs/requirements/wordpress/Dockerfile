@@ -16,8 +16,10 @@ RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
     && chmod +x wp-cli.phar \
     && mv wp-cli.phar /usr/local/bin/wp \
     && wp core download --allow-root
+
 # Copy php-fpm configuration
 COPY www.conf /etc/php8/php-fpm.d/www.conf
+RUN rm -rf wp-config.php
 
 # Expose port
 EXPOSE 9000
