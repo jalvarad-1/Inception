@@ -6,7 +6,7 @@
 #    By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/03 13:30:42 by jalvarad          #+#    #+#              #
-#    Updated: 2023/06/03 13:30:46 by jalvarad         ###   ########.fr        #
+#    Updated: 2023/06/06 16:23:44 by jalvarad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ build:
 
 # Start the Docker Compose services
 up: 
-	docker compose -f srcs/docker-compose.yml up -d
+	docker compose -f srcs/docker-compose.yml up
 
 # Stop the Docker Compose services
 stop:
@@ -48,6 +48,7 @@ destroy:
 
 # Clean up Docker
 clean:
-	docker compose -f srcs/docker-compose.yml down --rmi all --volumes
+	docker compose -f srcs/docker-compose.yml down --rmi all
+	docker volume rm mariadb wordpress
 
 .PHONY: all up down ssl build start destroy stop restart clean
