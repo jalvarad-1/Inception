@@ -6,7 +6,7 @@
 #    By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/03 13:30:42 by jalvarad          #+#    #+#              #
-#    Updated: 2023/06/11 14:48:13 by jalvarad         ###   ########.fr        #
+#    Updated: 2023/06/11 15:50:14 by jalvarad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,14 +24,14 @@ all: ssl up
 ssl: $(SSL_CERTS)
 
 $(SSL_DIR)/%.crt $(SSL_DIR)/%.key:
-	$(SSL_DIR)/ssl.sh $(SERVER_NAME)
+	cd srcs/requirements/nginx/conf/openssl && ./ssl.sh $(SERVER_NAME)
 
 # Build the Docker Compose services
 build:
 	docker compose -f srcs/docker-compose.yml build --no-cache
 
 # Start the Docker Compose services
-up: ssl
+up:
 	docker compose -f srcs/docker-compose.yml up
 
 # Stop the Docker Compose services
