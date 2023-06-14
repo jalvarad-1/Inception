@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # If wp-config.php doesn't exist, configure and install WordPress
-
+sleep 5
 if [ ! -f /var/www/html/wp-config.php ]; then
     echo "entro al if"
     wp config create --dbname=$DATABASENAME --dbuser=$MYSQL_USER --dbpass=$MYSQL_PASSWORD --dbhost=$DB_HOST --allow-root
