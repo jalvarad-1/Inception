@@ -6,7 +6,7 @@
 #    By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/03 13:30:42 by jalvarad          #+#    #+#              #
-#    Updated: 2023/06/15 00:22:08 by jalvarad         ###   ########.fr        #
+#    Updated: 2023/06/15 00:52:49 by jalvarad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ build:
 
 # Start the Docker Compose services
 up:
-	docker compose -f srcs/docker-compose.yml up
+	docker compose -f srcs/docker-compose.yml up -d
 
 # Stop the Docker Compose services
 stop:
