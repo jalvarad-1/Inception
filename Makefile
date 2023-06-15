@@ -6,7 +6,7 @@
 #    By: jalvarad <jalvarad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/03 13:30:42 by jalvarad          #+#    #+#              #
-#    Updated: 2023/06/15 00:52:49 by jalvarad         ###   ########.fr        #
+#    Updated: 2023/06/15 11:03:54 by jalvarad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,6 @@ destroy:
 clean:
 	docker compose -f srcs/docker-compose.yml down --rmi all
 	docker volume rm mariadb wordpress
-	docker system prune
+	docker system prune -f
 
 .PHONY: all up down ssl build start destroy stop restart clean
