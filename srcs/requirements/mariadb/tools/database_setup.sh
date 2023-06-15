@@ -3,6 +3,8 @@
 # Create SQL script
 cat << EOF > /scripts/init.sql
 CREATE USER IF NOT EXISTS 'root'@'localhost' IDENTIFIED BY '${MARIADB_ROOT_PASSWORD}';
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY ('${MARIADB_ROOT_PASSWORD}');
+GRANT ALL ON *.* TO 'root'@'localhost' WITH GRANT OPTION;
 CREATE USER IF NOT EXISTS 'root'@'%' IDENTIFIED BY '${MARIADB_ROOT_PASSWORD}';
 GRANT ALL ON *.* TO 'root'@'localhost' WITH GRANT OPTION;
 GRANT ALL ON *.* TO 'root'@'%' WITH GRANT OPTION;
